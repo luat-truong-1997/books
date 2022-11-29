@@ -25,9 +25,19 @@
     - Test (Unit), test (intergration) and test (E2E). More test, more conner case, less human errors.
     - Recovery quickly from error (revert, rollout)
     - Set up detail and clear monitoring with some good metrics (error rate on feature for example). Add tracking if needed for more detail and make decision based on metrics.
-    - Make a good training, well user guide.
+    - Make a good training, user-guide.
 ## Scalable
+
 **As the system grows (in data volume, traffic volume, or complexity), there should be reasonable ways of dealing with that growth**
+
+#### What is the load?
+- Based on the architecture of system (RPS, R/W ratio, CCU, cache hit rate,...etc). Each system has its own definition of load
+#### What is performance?
+- After we have the load, we have the performance number (throuhgput, repsonse time,... etc).
+- What do we do when the load's increased and keep performance the same
+- Pencentile and histogram is reasonable in case using for performance metric
+#### Handle the load
+**An architecture that scales well for a particular application is built around assumptions of which operations will be common and which will be rare** (load parameters. Wrong parameters -> wrong assumption)
 ## Maintainable
 **Over time, many different people will work on the system (engineering and operations, both maintaining current behavior and adapting the system to new use cases), and they should all be able to work on it productively**
 
