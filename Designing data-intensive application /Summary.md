@@ -1,3 +1,7 @@
+# Data system
+- System store data for sometime and give some kind of access protocol (Database, Cache Service or event Message Queue)
+- Different kind of data system fit for some kind of task (indexing system for search, caching system, OLTP database, message queue). Combining them make great application but also lead to some different problems
+
 # Foundation
 ## Reliable
 **The system should continue to work correctly (performing the correct function at the desired level of performance) even in the face of adversity (hardware or software faults, and even human error)**
@@ -40,7 +44,13 @@
 **An architecture that scales well for a particular application is built around assumptions of which operations will be common and which will be rare** (load parameters. Wrong parameters -> wrong assumption)
 ## Maintainable
 **Over time, many different people will work on the system (engineering and operations, both maintaining current behavior and adapting the system to new use cases), and they should all be able to work on it productively**
+- No one like to fix other's bug T.T 
+- To avoid create legacy system ourselves, follow 3 principles:
+    - Operability: Make it easy to keep the system running smoothly (old version running smoothly => if new version fail just rollback :D )
+        - A good ops (sysops, devops) team can help. System should be built to make routine task easy.
+    - Simplicity: Make it easy for new engineers (at some level) to understand the system, by removing as much complexity as possible from the system:
+        - Complexity can be in many forms: Explosion of the state space (many state), tight coupling of modules, tangled dependencies, incosistent naming and termiinology (one object different naming), hack aimed at solving performance problems, special-casing to work around (ad-hoc case)
+        - How to manage complexity of a project? -> Reduce accidental complexity. What is accidental complexity? -> Not inherent in the problem that the software solves but arises only from the implementation -> Use abstraction
 
-# Data system
-- System store data for sometime and give some kind of access protocol (Database, Cache Service or event Message Queue)
-- Different kind of data system fit for some kind of task (indexing system for search, caching system, OLTP database, message queue). Combining them make great application but also lead to some different problems
+    - Evolvability: Make it easy for engineers to make changes to the system in the future. Also known as extensibility, modifiability or plasticity:
+        - Making change easy. Your system's requirement won't remain unchanged. Using some working pattern can help (TDD and refactoring). If you want to refactor -> must ensure system do the thing right -> TDD come to the rescue
