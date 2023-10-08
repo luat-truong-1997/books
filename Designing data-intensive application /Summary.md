@@ -51,6 +51,40 @@
     - Simplicity: Make it easy for new engineers (at some level) to understand the system, by removing as much complexity as possible from the system:
         - Complexity can be in many forms: Explosion of the state space (many state), tight coupling of modules, tangled dependencies, incosistent naming and termiinology (one object different naming), hack aimed at solving performance problems, special-casing to work around (ad-hoc case)
         - How to manage complexity of a project? -> Reduce accidental complexity. What is accidental complexity? -> Not inherent in the problem that the software solves but arises only from the implementation -> Use abstraction
-
     - Evolvability: Make it easy for engineers to make changes to the system in the future. Also known as extensibility, modifiability or plasticity:
         - Making change easy. Your system's requirement won't remain unchanged. Using some working pattern can help (TDD and refactoring). If you want to refactor -> must ensure system do the thing right -> TDD come to the rescue
+# Data model
+- Application are built by layering one data model on top of another. Each layer hides the complexity of the layers below it by providing a clean data model. The key question is **How is it represented in terms of the next-lower layer?**
+
+## Relational model
+- In relational model, data is organized in **relations** (table). Each relation is an unordered collection of **tuples** (row).
+- Relational model lie in business data processing
+- Use-cases:
+  - Transaction processing (support for banking processing, booking, ticketing, etc...)
+  - Batch processing (customer invoice, payroll, etc...)
+- How NoSQL (not only SQL) birth? -> Different application has different requirement. Relational model is not fit for all use-cases so we need different model for different use-cases (polyglot persistence)
+
+## Problem of Relational model
+- Object-relational mismatch: Some extra jobs have to be done to mapping application object and relation model (ORM, etc...)
+- Handle One-to-many relationship is sometime awkward (multiple way to do it, like using foreign key and join table, using unstructured data type, etc..)
+
+## Problem of NoSQL
+- Handle many-to-many or many-to-one relationship is often weak
+- Support of join is depended on the engine
+- This lead to hard to normalize data (data duplication, data inconsistency, etc...)
+
+## Choosing between document and relational databases based on model
+
+### Application need?
+- If application has document-like structure (a tree of one-to-many relationships where always loaded at once), then the document model can be a good fit.
+- If application has many-to-many relationships, then the document model is awkward and less efficient. The relational model is a better fit.
+
+### Schema flexibility
+- If the schema is likely to change, then a document model may be more flexible and therefore easier to evolve. (schema-on-read)
+- If the schema is unlikely to change, then a relational model may be better, because it can enforce schema constraints more rigourously. (schema-on-write)
+
+### Data locality for queries
+- If the application frequently needs to access the same document together, then storing the document in one place is more convenient (document model)
+
+### Convergence of document and relational databases
+- Relational databases are adding support for JSON documents, and document databases are adding support for relational-like joins.
