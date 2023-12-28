@@ -88,3 +88,34 @@
 
 ### Convergence of document and relational databases
 - Relational databases are adding support for JSON documents, and document databases are adding support for relational-like joins.
+
+## Query Language
+
+### Imperative query
+- Pure code
+### Declarative query
+- Declarative abstract (or hide) the implementation detail of database engine. This lead to database engine can introduce the improvement itself and doesn't require any application change. The downside is it's more limited in database function
+
+Example:
+- SQL
+- CSS
+
+### MapReduce query:
+- Somewhere in between declarative query (restricted by database engine) and imperative query (write code). 
+- Powerful tool (since it can call to many other functions)
+- Example of supported engine:
+  - MongoDB
+
+## Graph-like data model
+- Consists of two kinds of object: vertices and edges
+  - Vertices contains:
+    - Identifier (ID)
+    - Set of inbound edges
+    - Set of outbound edges
+    - Its information
+  - Edges contains:
+    - Identifier
+    - Tail vertex (start)
+    - Head vertex (end)
+    - Relationship label
+    - Its properties
