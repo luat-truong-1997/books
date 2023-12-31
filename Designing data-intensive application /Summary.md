@@ -119,3 +119,7 @@ Example:
     - Head vertex (end)
     - Relationship label
     - Its properties
+- Used it own query languange:
+  - Cypher Query Languange 
+  - SQL for Graph
+  - SPARQL (Use with triple store model)
